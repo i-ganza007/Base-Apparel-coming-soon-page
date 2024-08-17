@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <title>Frontend Mentor | Base Apparel Coming Soon Page</title>
+
+  <style>
+    .attribution { 
+      font-size: 11px; 
+      text-align: left;
+      margin: 20px;
+    }
+    .attribution a { 
+      color: hsl(228, 45%, 44%); 
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Josefin Sans', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      background-color: hsl(0, 0%, 100%);
+      color: hsl(0, 0%, 10%);
+      height: 100vh;
+      display: flex;
+      margin: 0;
+    }
+    .text--container {
+      width: 50%;
+      height: 100vh; 
+      background: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 20px;
+    }
+    .text--content {
+      font-size: 1.5rem;
+      font-weight: 300;
+      max-width: 600px;
+      text-align: left;
+    }
+    .content--heading {
+      font-size: 4rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      letter-spacing: 5px; 
+      line-height: 1.2;
+    }
+    #special--heading {
+      font-size: 4rem;
+      font-weight: 100;
+      margin-bottom: 1rem;
+      color: hsl(0, 36%, 70%);
+    }
+    .content--text {
+      max-width: 600px;
+      margin-bottom: 20px;
+    }
+    .arrow-container {
+      background-color: hsl(0, 93%, 68%);
+      padding: 10px;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      margin-top: 10px; 
+    }
+    #input-class {
+      border-radius: 40px;
+      padding: 10px;
+      border: 1px solid lightgray;
+      width: 70%;
+      font-size: 1rem;
+    }
+    .content--input {
+      display: flex;
+      align-items: center;
+      margin-top: 20px; 
+      gap: 10px; 
+    }
+    .base--apparel img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 50px;
+    }
+    .image--container {
+      width: 50%;
+      height: 100vh; 
+      background-image: url('images/hero-desktop.jpg'); 
+      background-size: cover;
+      background-position: center;
+    }
+    #error-icon {
+      color: red;
+      font-size: 1.5rem;
+      display: none;
+    }
+    #error-message {
+      color: red;
+      font-size: 1rem;
+      margin-bottom: 10px;
+      padding-left: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="text--container">
+    <div class="text--content">
+      <div class="base--apparel">
+        <img src="images/logo.svg" alt="base-apparel logo">
+      </div>
+      <div class="content--heading">
+        <span id="special--heading">WE'RE</span> COMING SOON
+      </div>
+      <div class="content--text" style="color:hsl(0, 36%, 70%);">
+        Hello fellow shoppers! We're currently building our new fashion store. 
+        Add your email below to stay up-to-date with announcements and our launch deals.
+      </div>
+      <div class="content--input">
+        <input type="text" placeholder="Email Address" id="input-class">
+        <img src="images/icon-error.svg" alt="error-icon" id="error-icon">
+        <div class="arrow-container" onclick="validateEmail()">
+          <img src="images/icon-arrow.svg" width="15px" alt="Arrow Icon">
+        </div>
+      </div>
+      <span id="error-message">Please provide a valid email</span>
+    </div>
+  </div>
+  <div class="image--container"></div>
+  <script>
+    function validateEmail() {
+      const input = document.getElementById('input-class');
+      const errorIcon = document.getElementById('error-icon');
+      const errorMessage = document.getElementById('error-message');
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+      if (emailPattern.test(input.value)) {
+        errorMessage.style.color = 'green';
+        errorMessage.style.fontWeight = '500'; 
+        errorMessage.textContent = 'Valid';
+        errorMessage.style.display = 'inline';
+        errorIcon.style.display = 'none';
+        input.style.border = '2px solid green'; 
+      } else {
+        errorMessage.style.color = 'red';
+        errorMessage.textContent = 'Please provide a valid email';
+        errorMessage.style.display = 'inline';
+        errorIcon.style.display = 'inline';
+        input.style.border = '2px solid red'; // Border for invalid input
+      }
+    }
+  </script>
+</body>
+</html>
